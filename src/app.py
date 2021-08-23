@@ -30,7 +30,7 @@ def handle_products():
                 "price": product.price
             } for product in products]
 
-        return {"count": len(results), "products": results}
+        return render_template("products.html")
 
 @app.route('/products/new')
 def new_product():
@@ -38,7 +38,7 @@ def new_product():
 
 @app.route('/')
 def hello():
-    return render_template("base.html")
+    return render_template("index.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
