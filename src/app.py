@@ -1,10 +1,9 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config.from_object('config.DevelopmentConfig')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -15,11 +14,15 @@ from scraper import Scraper
 def handle_products():
     if request.method == 'POST':
         url = request.form['product_url']
-        name, image_url, price = Scraper.scrap(url)
-        new_product = ProductsModel(name, image_url, price)
-        db.session.add(new_product)
-        db.session.commit()
-        return redirect(url_for('show_product', product_id = new_product.id))
+        name, image_url, price, error = Scraper.scrap(url)
+        if error != None:
+            flash(error ,'error')
+            return redirect(url_for('index'))
+        else:
+            new_product = ProductsModel(name, image_url, price)
+            db.session.add(new_product)
+            db.session.commit()
+            return redirect(url_for('show_product', product_id = new_product.id))
 
     elif request.method == 'GET':
         products = ProductsModel.query.all()
