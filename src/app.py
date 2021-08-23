@@ -33,6 +33,13 @@ def handle_products():
 
         return render_template("products.html", products = results)
 
+@app.route('/products/<int:product_id>')
+def show_product(product_id):
+    product = ProductsModel.query.get(product_id)
+    if product is None:
+        return render_template("404.html")
+    return render_template("product.html", product = product)
+
 @app.route('/products/new')
 def new_product():
     return render_template("new_product.html")
