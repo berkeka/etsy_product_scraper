@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, flash
+from flask import Flask, request, render_template, redirect, url_for, flash, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -40,7 +40,7 @@ def handle_products():
 def show_product(product_id):
     product = ProductsModel.query.get(product_id)
     if product is None:
-        return render_template("404.html")
+        abort(404)
     return render_template("product.html", product = product)
 
 @app.route('/products/new')
