@@ -25,12 +25,13 @@ def handle_products():
         products = ProductsModel.query.all()
         results = [
             {
+                "id": product.id,
                 "name": product.name,
                 "image_url": product.image_url,
                 "price": product.price
             } for product in products]
 
-        return render_template("products.html")
+        return render_template("products.html", products = results)
 
 @app.route('/products/new')
 def new_product():
