@@ -6,7 +6,7 @@
       <form class="needs-validation" action="{{ url_for('handle_products') }}" method="post" novalidate>
         <div class="mb-3">
           <label for="URL" class="form-label">Product URL</label>
-          <input type="text" class="form-control" id="product_url" required>
+          <input type="text" class="form-control" name="product_url" required>
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-primary">Add Product</button>

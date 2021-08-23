@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -19,7 +19,7 @@ def handle_products():
         new_product = ProductsModel(name, image_url, price)
         db.session.add(new_product)
         db.session.commit()
-        return {"message": f"product {new_product.name} has been created successfully."}
+        return redirect(url_for('show_product', product_id = new_product.id))
 
     elif request.method == 'GET':
         products = ProductsModel.query.all()
