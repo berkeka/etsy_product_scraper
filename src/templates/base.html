@@ -1,0 +1,17 @@
+<!doctype html>
+<title>Etsy Product Scraper</title>
+<nav>
+  <h1>Etsy Products</h1>
+  <ul>
+    <li>Products</li>
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
