@@ -7,6 +7,8 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     SQLALCHEMY_DATABASE_URI = "postgresql://postgres:postgres@localhost:5432/etsy"
+    SECRET_KEY = os.getenv('SECRET_KEY')
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 class ProductionConfig(Config):
     DEBUG = False
