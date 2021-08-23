@@ -45,7 +45,7 @@ def new_product():
     return render_template("new_product.html")
 
 @app.route('/')
-def hello():
+def index():
     return render_template("index.html")
 
 if __name__ == '__main__':
