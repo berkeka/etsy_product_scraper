@@ -17,3 +17,5 @@ Now you can build and run the project using docker-compose.
 docker-compose build
 docker-compose up 
 ```
+
+Project can be accessed from `localhost:5000/`
