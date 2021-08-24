@@ -19,6 +19,7 @@ services:
       - 5000:5000
     env_file:
       - .env
+    restart: on-failure
   db:
     image: postgres:13-alpine
     environment:
