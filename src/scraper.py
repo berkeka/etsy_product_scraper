@@ -23,6 +23,10 @@ class Scraper:
 
             # Get item info column
             result = soup.find(id='listing-right-column')
+
+            if result == None:
+                return None, None, None, "Couldnt find product!"
+
             # Get img with the data-index 0
             image = result.find("img", attrs={'data-index' : 0})
             image_url = image['src']
